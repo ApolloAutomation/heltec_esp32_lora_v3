@@ -203,7 +203,7 @@ void heltec_ve(bool state) {
  */
 float heltec_vbat() {
   pinMode(VBAT_CTRL, OUTPUT);
-  digitalWrite(VBAT_CTRL, LOW);
+  digitalWrite(VBAT_CTRL, HIGH);
   delay(5);
   float vbat = analogRead(VBAT_ADC) / 238.7;
   // pulled up, no need to drive it
@@ -367,11 +367,11 @@ float heltec_temperature() {
 void heltec_display_power(bool on) {
   #ifndef HELTEC_NO_DISPLAY_INSTANCE
     if (on) {
-      #ifdef HELTEC_WIRELESS_STICK
+      
         // They hooked the display to "external" power, and didn't tell anyone
         heltec_ve(true);
         delay(5);
-      #endif
+      
       pinMode(RST_OLED, OUTPUT);
       digitalWrite(RST_OLED, HIGH);
       delay(1);
